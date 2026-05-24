@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    database: cultivated-oven-497315-j1
+    schema: raw
+    tables:
+      - name: fred_economic_indicators
+      - name: stock_prices
+      - name: sp500_constituents
