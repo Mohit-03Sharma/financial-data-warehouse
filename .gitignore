@@ -1,0 +1,6 @@
+cultivated-oven-497315-j1-3db43a8c6512.json
+.env
+logs/
+venv/
+__pycache__/
+*.pyc
