@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: dim_tickers
+    columns:
+      - name: ticker_id
+        tests:
+          - unique
+          - not_null
+      - name: ticker
+        tests:
+          - unique
+          - not_null
+      - name: sector
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Technology', 'Financials', 'Health Care', 'Energy',
+                       'Consumer Discretionary', 'Consumer Staples', 'Industrials',
+                       'Utilities', 'Materials', 'Real Estate', 'Communication Services',
+                       'Information Technology']
+
+  - name: dim_dates
+    columns:
+      - name: date_id
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_economic_regime
+    columns:
+      - name: regime_id
+        tests:
+          - unique
+          - not_null
+      - name: economic_regime
+        tests:
+          - accepted_values:
+              values: ['High Inflation / Tightening', 'High Inflation / Accommodative',
+                       'Near-Zero Rates', 'High Unemployment', 'Normal']
+
+  - name: fct_stock_performance
+    columns:
+      - name: performance_id
+        tests:
+          - unique
+          - not_null
+      - name: ticker
+        tests:
+          - not_null
+      - name: price_date
+        tests:
+          - not_null
+      - name: close_price
+        tests:
+          - not_null
+      - name: sector
+        tests:
+          - not_null
+      - name: ticker_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_tickers')
+              field: ticker_id

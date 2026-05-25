@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_fred_indicators
+    columns:
+      - name: series_id
+        tests:
+          - not_null
+      - name: indicator_date
+        tests:
+          - not_null
+      - name: indicator_value
+        tests:
+          - not_null
+      - name: indicator_name
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Federal Funds Rate', 'CPI Inflation', 'GDP (Billions USD)', 'Unemployment Rate']
+
+  - name: stg_stock_prices
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+      - name: price_date
+        tests:
+          - not_null
+      - name: close_price
+        tests:
+          - not_null
+
+  - name: stg_sp500_constituents
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+          - unique
+      - name: sector
+        tests:
+          - not_null
+      - name: company_name
+        tests:
+          - not_null
